@@ -1,0 +1,22 @@
+.header {
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        
+    }
+
+    &__logo {
+        width: 200px;
+        height: 55px;
+    }
+
+    &__score-block {
+        color: #fff;
+        font-weight: 500;
+        line-height: 1.2;
+        font-size: 1.171875rem;
+        display: flex;
+        align-items: center;
+    }
+}
