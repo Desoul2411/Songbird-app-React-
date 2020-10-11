@@ -1,6 +1,6 @@
 import React,{ Component } from 'react';
 import './Header.scss';
-import Logo from '../img/logo.svg';
+import Logo from '../../img/logo.svg';
 
 import Nav from './Nav/Nav';
 
@@ -11,7 +11,6 @@ class Header extends Component {
 
         }
     }
-
 
     render() {
         return(

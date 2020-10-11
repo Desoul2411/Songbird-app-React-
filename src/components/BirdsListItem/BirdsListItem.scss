@@ -1,0 +1,39 @@
+
+.bird-list-item {
+    padding: .85rem 1.25rem;
+    background-color: #303030;
+    border: 1px solid #555;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #444;
+    }
+
+    &:first-of-type {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    &:last-of-type {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+
+    &__indicator {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 15px;
+        border-radius: 50%;
+        transition: .1s;
+        background-color: #444;
+    }
+
+    &.error &__indicator {
+        background-color: #d62c1a;
+    }
+}
+
+    

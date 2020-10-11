@@ -1,8 +1,10 @@
 .header {
+    margin-bottom: 25px;
     &__top {
         display: flex;
         justify-content: space-between;
-        padding: 15px 0;
+        padding-top: 20px;
+        padding-bottom: 15px;
         
     }
 
