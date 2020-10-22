@@ -17,26 +17,54 @@ class App extends Component {
         score: 0,
         level: 0,
         answer: '',
-        birdDataChoosen: null
+        points: 0,
+        birdDataChoosen: null,
+        levelCompleted: '',
+        randomBird: '',
       }
+      this.randomBird = birdsData[0][Math.floor( 0 + Math.random() * (5 + 1 - 0) )];
+  }
+
+  componentDidMount() {
+    this.setState({ randomBird: this.randomBird.name })
+  }
+
+/*   setAnswerIsCorrectIndicator = () => {
+
+  } */
+
+  calculatePoints = () => {
+    //Check Answer
+    if ( this.state.answer !== '' && this.randomBird.name == this.state.answer) {
+      this.setState({points:this.state.points + 5 })
+      this.setState({levelCompleted: true })
+      alert('win')
+    } else {
+      alert('loose')
+    }
+  }
+
+  getBirdDescription = (birdChosen,birdData) => {
+    this.setState({answer: birdChosen });
+    this.setState({birdDataChoosen: birdData });
+
+    this.calculatePoints(); 
   }
 
 
-getBirdDescription = (birdChosen,birdData) => {
-  console.log(birdChosen);
-  console.log(birdData);
-  this.setState({answer: birdChosen });
-  this.setState({birdDataChoosen: birdData });
-}
 
   render() {
     return (
       <div className="App">
         <div className="container">
           <Header/>
-          <Soundbar/>
+          <Soundbar randomBird = {this.randomBird} chosenBird={this.state.answer}/>
           <div className="game-content">
-            <BirdsList onClick={(birdNameChosen,birdDataChosen) => this.getBirdDescription(birdNameChosen,birdDataChosen)} birds={birdsData}/>
+            <BirdsList onClick={(birdNameChosen,birdDataChosen) => 
+                this.getBirdDescription(birdNameChosen,birdDataChosen)} 
+                birds={birdsData} 
+                isLevelCompleted={this.state.levelCompleted}
+              />
             <BirdInfo chosenBirdData={this.state.birdDataChoosen} birdsData={birdsData}/>
           </div>
           <NextButton onClick={(e) => console.log(e.target)}/>

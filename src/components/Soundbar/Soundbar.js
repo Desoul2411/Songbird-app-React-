@@ -9,10 +9,15 @@ class Soundbar extends Component {
         this.state= {
 
         }
+  
     }
 
-
     render() {
+        let {randomBird, chosenBird} = this.props;
+      /*   console.log('random', randomBird)
+        console.log('chosen', chosenBird) */
+
+       
         return(
             <div className="soundbar">
                     <img src={BirdTempImg} className="soundbar__img"/>
@@ -21,7 +26,7 @@ class Soundbar extends Component {
                         ******
                     </div>
                     <div className="soundbar__player-block">
-                        <audio className="soundbar__player" controls src=""/>
+                        <audio className="soundbar__player" controls src={randomBird.audio}/>
                     </div>
                 </div>
             </div>

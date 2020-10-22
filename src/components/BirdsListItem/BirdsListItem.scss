@@ -34,6 +34,10 @@
     &.error &__indicator {
         background-color: #d62c1a;
     }
+
+    &.success &__indicator {
+        background-color: #00bc8c;
+    }
 }
 
     
