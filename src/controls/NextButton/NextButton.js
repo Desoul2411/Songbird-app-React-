@@ -12,7 +12,7 @@ class NextButton extends Component {
     render() {
         return(
             <>
-                <button className="btn-next active" onClick={(e) => this.props.onClick(e)}>Next Level</button>
+                <button className={ this.props.className} disabled={this.props.disabled} onClick={() => this.props.onClick()}>Next Level</button>
             </>
         )
     }

@@ -18,7 +18,7 @@ class Header extends Component {
                 <div className="header__top">
                     <img src={Logo} className = "header__logo"/>
                     <div className="header__score-block">
-                        Score:&nbsp;<span className="header__score-total">0</span>
+                        Score:&nbsp;<span className="header__score-total">{this.props.score}</span>
                     </div>
                 </div>
                 <Nav/>

@@ -19,17 +19,22 @@ class BirdsList extends Component {
 
     render() {
         let {isLevelCompleted} = this.props;
-        console.log(isLevelCompleted)
         return(
             <>
                 <ul className="bird-list">
                    {
-                        this.props.birds[0].map((bird,i) =>
+                        this.props.birds.map((bird,i) =>
                             <BirdsListItem onClick={(birdNameChosen,birdDataChosen) => 
                                 this.props.onClick(birdNameChosen,birdDataChosen) } 
-                                key={bird.id} name={bird.name} 
+                                key={bird.id}
+                                id={bird.id}
+                                name={bird.name} 
                                 birdData={bird} 
-                                isLevelCompleted = {this.props.isLevelCompleted}
+                                isLevelCompleted={this.props.isLevelCompleted}
+                                isAnswerCorrect={this.props.isAnswerCorrect}
+                                idSelected={this.props.idSelected}
+                                selected={this.props.selectedOptions[bird.id - 1]}
+                                isLevelChanged={this.props.isLevelChanged}
                             />
                         )
                    }
