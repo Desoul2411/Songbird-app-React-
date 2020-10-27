@@ -16,7 +16,6 @@ class App extends Component {
       this.state= {
         score: 0,
         level: 0,
-        answer: '',
         totalScore:0,
         birdDataChoosen: null,
         levelCompleted: '',
@@ -27,6 +26,8 @@ class App extends Component {
         idSelected:0,
         selectedOptions: Array(6).fill(false),
       }
+      this.soundCorrect = new Audio('./audio/correct-answer-sound-effect.mp3');
+      this.soundIncorrect = new Audio('./audio/incorrect-answer-sound-effect.mp3');
   }
 
 
@@ -40,39 +41,65 @@ class App extends Component {
     this.setRandomBird();
   }
 
-/*   setAnswerIsCorrectIndicator = () => {
 
-  } */
 
   getBirdDescription = (birdChosen,birdData) => {
+    let randomBird = this.state.randomBird.name;
+    this.isWinRound(birdChosen,randomBird); 
+
     this.setState({levelChanged: false});
     this.setState({
       birdDataChoosen: birdData,
       idSelected: birdData.id
     });
     let selectedOptions = this.state.selectedOptions;
-    selectedOptions[birdData.id - 1] = true;
-    this.setState({selectedOptions: selectedOptions});
+    if (this.state.levelCompleted) {
+      this.setState({selectedOptions: this.state.selectedOptions});
+      
+    } else {
+      selectedOptions[birdData.id - 1] = true;
+      this.setState({selectedOptions: selectedOptions});
+    }
     
     
-    let randomBird = this.state.randomBird.name;
-    this.isWinRound(birdChosen,randomBird); 
+    
+    
   }
 
-
+  //Check Answer
   isWinRound = (birdChosen,randomBird) => {
-    //Check Answer
-    if ( birdChosen !== '' && birdChosen == randomBird) {
+     if (this.state.levelCompleted) {
+      this.setState({attempts: this.state.attempts});
+    }
+    
+    else if ( birdChosen !== '' && birdChosen == randomBird) {
       this.setState({attempts: this.state.attempts + 1 });
       this.setState({levelCompleted: true });
       this.setState({currentAnswerisCorrect: true });
+      this.playSound(true);
       this.calculateScore();
       alert('win round');
 
-    } else {
+    }  else if (birdChosen !== '' && this.state.birdDataChoosen !==null && birdChosen !== randomBird && birdChosen === this.state.birdDataChoosen.name) {
+      alert('ddd')
+      this.setState({attempts: this.state.attempts});
+    }
+    else {
       alert('wrong answer');
       this.setState({attempts: this.state.attempts + 1 });
       this.setState({currentAnswerisCorrect: false });
+      this.playSound(false);
+    }
+  }
+
+  playSound(isAnswerCorrect) {
+    this.soundIncorrect.load();
+    this.soundCorrect.load();
+
+    if (isAnswerCorrect) {
+      this.soundCorrect.play();
+    } else {
+      this.soundIncorrect.play();
     }
   }
 
@@ -91,7 +118,7 @@ class App extends Component {
   } */
 
 toNextLevel = () => {
-  alert(5)
+  alert("toNextLevel")
   this.setState({level: this.state.level + 1 });
   this.setState({levelCompleted: false});
   this.setState({attempts: 0});
@@ -106,11 +133,14 @@ toNextLevel = () => {
 
 
   render() {
+
+
+
     return (
       <div className="App">
         <div className="container">
           <Header score={this.state.totalScore}/>
-          <Soundbar randomBird = {this.state.randomBird} chosenBird={this.state.answer}/>
+          <Soundbar randomBird = {this.state.randomBird} chosenBirdName={this.state.birdDataChoosen !== null && this.state.levelCompleted &&  this.state.birdDataChoosen.name} chosenBirdImage={this.state.birdDataChoosen !== null && this.state.levelCompleted && this.state.birdDataChoosen.image}/>
           <div className="game-content">
             <BirdsList onClick={(birdNameChosen,birdDataChosen) => 
                 this.getBirdDescription(birdNameChosen,birdDataChosen)} 
