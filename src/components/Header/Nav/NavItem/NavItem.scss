@@ -1,0 +1,29 @@
+.nav__item {
+    background-color: #008966;
+    width: 100%;
+    text-align: center;
+    transition: .2s;
+
+    &:first-of-type {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    &:last-of-type {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    &.active {
+        background-color: #00bc8c;
+    }
+}
+
+.nav__link {
+    display: block;
+    padding: 0.5rem 0;
+    line-height: 1.25;
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
+}

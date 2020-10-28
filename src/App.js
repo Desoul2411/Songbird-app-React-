@@ -7,7 +7,9 @@ import Soundbar from './components/Soundbar/Soundbar';
 /* import GameContent from './components/GameContent/GameContent'; */
 import BirdsList from './components/BirdsList/BirdsList';
 import BirdInfo from './components/BirdInfo/BirdInfo';
+import GameOverScreen from './components/GameOverScreen/GameOverScreen';
 import NextButton from './controls/NextButton/NextButton';
+
 
 
 class App extends Component {
@@ -39,13 +41,13 @@ class App extends Component {
 
   componentDidMount() {
     this.setRandomBird();
-  }
-
+  };
 
 
   getBirdDescription = (birdChosen,birdData) => {
     let randomBird = this.state.randomBird.name;
     this.isWinRound(birdChosen,randomBird); 
+    this.isAlreadyChecked(birdData.id);
 
     this.setState({levelChanged: false});
     this.setState({
@@ -55,15 +57,16 @@ class App extends Component {
     let selectedOptions = this.state.selectedOptions;
     if (this.state.levelCompleted) {
       this.setState({selectedOptions: this.state.selectedOptions});
-      
     } else {
       selectedOptions[birdData.id - 1] = true;
       this.setState({selectedOptions: selectedOptions});
     }
-    
-    
-    
-    
+  };
+
+
+  isAlreadyChecked = (idChosen) => {
+    // prevent attempts increase when click on the previous clicked option
+    this.state.selectedOptions[idChosen - 1] && this.setState({attempts: this.state.attempts});
   }
 
   //Check Answer
@@ -79,11 +82,7 @@ class App extends Component {
       this.playSound(true);
       this.calculateScore();
       alert('win round');
-
-    }  else if (birdChosen !== '' && this.state.birdDataChoosen !==null && birdChosen !== randomBird && birdChosen === this.state.birdDataChoosen.name) {
-      alert('ddd')
-      this.setState({attempts: this.state.attempts});
-    }
+    }  
     else {
       alert('wrong answer');
       this.setState({attempts: this.state.attempts + 1 });
@@ -113,10 +112,6 @@ class App extends Component {
     });
   }
 
-/*   isWinRound = () => {
-    this.state.levelCompleted && alert('win level');
-  } */
-
 toNextLevel = () => {
   alert("toNextLevel")
   this.setState({level: this.state.level + 1 });
@@ -128,33 +123,41 @@ toNextLevel = () => {
   this.setState({currentAnswerisCorrect: null});
   
   this.setRandomBird();
- /*  this.setChoosen */
 }
 
 
   render() {
-
-
-
     return (
       <div className="App">
         <div className="container">
-          <Header score={this.state.totalScore}/>
-          <Soundbar randomBird = {this.state.randomBird} chosenBirdName={this.state.birdDataChoosen !== null && this.state.levelCompleted &&  this.state.birdDataChoosen.name} chosenBirdImage={this.state.birdDataChoosen !== null && this.state.levelCompleted && this.state.birdDataChoosen.image}/>
+          <Header 
+            score={this.state.totalScore} 
+            level={this.state.level}
+          />
+          {/* <GameOverScreen/> */}
+          <Soundbar 
+            randomBird = {this.state.randomBird} 
+            chosenBirdName={this.state.birdDataChoosen !== null && this.state.levelCompleted &&  this.state.birdDataChoosen.name} 
+            chosenBirdImage={this.state.birdDataChoosen !== null && this.state.levelCompleted && this.state.birdDataChoosen.image}
+          />
           <div className="game-content">
-            <BirdsList onClick={(birdNameChosen,birdDataChosen) => 
-                this.getBirdDescription(birdNameChosen,birdDataChosen)} 
-                birds={birdsData[this.state.level]} 
-                isLevelCompleted={this.state.levelCompleted}
-                isAnswerCorrect={this.state.currentAnswerisCorrect}
-                idSelected={this.state.idSelected}
-                selectedOptions = {this.state.selectedOptions}
-                isLevelChanged={this.state.levelChanged}
-              />
-            <BirdInfo chosenBirdData={this.state.birdDataChoosen ? this.state.birdDataChoosen : null } birdsData={birdsData}/>
+            <BirdsList 
+              onClick={(birdNameChosen,birdDataChosen) => this.getBirdDescription(birdNameChosen,birdDataChosen)} 
+              birds={birdsData[this.state.level]} 
+              isLevelCompleted={this.state.levelCompleted}
+              isAnswerCorrect={this.state.currentAnswerisCorrect}
+              idSelected={this.state.idSelected}
+              selectedOptions = {this.state.selectedOptions}
+              isLevelChanged={this.state.levelChanged}
+            />
+            <BirdInfo 
+              chosenBirdData={this.state.birdDataChoosen ? this.state.birdDataChoosen : null } 
+              birdsData={birdsData}
+            />
           </div>
-          {this.state.levelCompleted ? <NextButton className="btn-next active" disabled = {false} onClick={this.toNextLevel}/>
-          : <NextButton className="btn-next" disabled={true}/>} 
+          {this.state.levelCompleted ? 
+            <NextButton className="btn-next active" disabled = {false} onClick={this.toNextLevel}/> : 
+            <NextButton className="btn-next" disabled={true}/>} 
         </div>
       </div>
     );

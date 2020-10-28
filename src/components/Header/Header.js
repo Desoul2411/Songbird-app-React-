@@ -21,7 +21,7 @@ class Header extends Component {
                         Score:&nbsp;<span className="header__score-total">{this.props.score}</span>
                     </div>
                 </div>
-                <Nav/>
+                <Nav level={this.props.level}/>
             </div>
         )
     }
