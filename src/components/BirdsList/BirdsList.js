@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import './BirdsList.scss';
 import BirdsListItem from '../BirdsListItem/BirdsListItem';
 

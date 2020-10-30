@@ -6,7 +6,7 @@ import BirdTempImg from '../../img/bird-remplate.jpg';
 const QuestionBar = ({randomBird,chosenBirdName,chosenBirdImage}) => {
     return(
         <div className="question-bar">
-                <img src={chosenBirdImage ? chosenBirdImage : BirdTempImg} className="question-bar__img"/>
+                <img src={chosenBirdImage ? chosenBirdImage : BirdTempImg} className="question-bar__img" alt="изображение загаданной птицы"/>
             <div className="question-bar__bird-info">
                 <div className="question-bar__bird-name">
                     {chosenBirdName ? chosenBirdName : '******'} 

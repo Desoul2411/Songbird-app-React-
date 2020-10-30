@@ -18,7 +18,7 @@ const GameOverScreen = ({onClick,totalScore}) => {
                 } 
             </p>
             <hr className="game-over-screen__line"/>
-            {totalScore === 30 ?  <img src={BirdFinalImg} className="game-over-screen__final-bird-image"/> : <ResetButton onClick={()=> onClick()}/>} 
+            {totalScore === 30 ?  <img src={BirdFinalImg} className="game-over-screen__final-bird-image" alt="финальное изображение"/> : <ResetButton onClick={()=> onClick()}/>} 
         </div>
     )
 }

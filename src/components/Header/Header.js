@@ -8,7 +8,7 @@ const Header = ({score,level}) => {
     return(
         <div className="header">
             <div className="header__top">
-                <img src={Logo} className = "header__logo"/>
+                <img src={Logo} className = "header__logo" alt="логотип приложения"/>
                 <div className="header__score-block">
                     Score:&nbsp;<span className="header__score-total">{score}</span>
                 </div>

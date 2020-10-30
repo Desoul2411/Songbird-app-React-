@@ -5,7 +5,7 @@ const NavItem = ({itemName,currentLevel,index}) => {
 
     return (
         <>
-           <li className={index === currentLevel ? "nav__item active" : "nav__item"}> <a href="" className="nav__link">{itemName}</a></li>
+           <li className={index === currentLevel ? "nav__item active" : "nav__item"}>{itemName}</li>
         </>
     );
 }

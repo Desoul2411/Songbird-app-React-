@@ -3,6 +3,11 @@
     width: 100%;
     text-align: center;
     transition: .2s;
+    padding: 0.5rem 0;
+    line-height: 1.25;
+    width: 100%;
+    color: #fff;
+    text-decoration: none;
 
     &:first-of-type {
         border-top-left-radius: 5px;
@@ -17,13 +22,4 @@
     &.active {
         background-color: #00bc8c;
     }
-}
-
-.nav__link {
-    display: block;
-    padding: 0.5rem 0;
-    line-height: 1.25;
-    width: 100%;
-    color: #fff;
-    text-decoration: none;
 }

@@ -9,7 +9,7 @@ const BirdInfo = ({chosenBirdData}) => {
                 (
                     <>
                         <div className="bird-info__media">
-                            <img src={chosenBirdData.image} className="bird-info__image"/>
+                            <img src={chosenBirdData.image} className="bird-info__image" alt="изображение птицы"/>
                             <div className="bird-info__media-secription-block">
                                 <div className="bird-info__names">
                                         <span className="bird-info__rus-name">{chosenBirdData.name}</span>
