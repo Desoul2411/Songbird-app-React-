@@ -1,8 +1,10 @@
 .nav {
     display: flex;
     list-style: none;
+    flex-wrap: wrap;
     color: #fff;
     justify-content: space-between;
     padding: 0;
     border-radius: 5px;
+    overflow: hidden;
 }

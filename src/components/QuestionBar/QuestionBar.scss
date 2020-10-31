@@ -4,6 +4,10 @@
     margin-bottom: 25px;
     background-color: #303030;
     border-radius: 0.3rem;
+    @media (max-width:576px) {
+        flex-direction: column;
+        text-align: center;
+    }
 
     &__img {
         width: 200px;
@@ -11,6 +15,12 @@
         border-radius: 10px;
         margin: 0;
         margin-right: 40px;
+        @media (max-width:700px) {
+            margin-right: 20px;
+        }
+        @media (max-width:576px) {
+            margin: 0 auto;
+        }
     }
 
     &__bird-info {

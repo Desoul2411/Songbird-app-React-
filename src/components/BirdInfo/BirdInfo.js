@@ -1,5 +1,7 @@
 import React from 'react';
 import './BirdInfo.scss';
+import AudioPlayer from 'react-h5-audio-player';
+import './audioPlayer.scss';
 
 const BirdInfo = ({chosenBirdData}) => {
     return(
@@ -15,7 +17,12 @@ const BirdInfo = ({chosenBirdData}) => {
                                         <span className="bird-info__rus-name">{chosenBirdData.name}</span>
                                     <span className="bird-info__lat-name">{chosenBirdData.species}</span>
                                 </div>
-                                <audio className="bird-info__player" controls src={chosenBirdData.audio}/>
+                                <AudioPlayer
+                                    autoPlayAfterSrcChange= {false}
+                                    layout={'horizontal'}
+                                    showFilledProgress={true}
+                                    src={chosenBirdData.audio}
+                                />
                             </div>
                         </div>
                 <p className="bird-info__text-description">{chosenBirdData.description}</p>

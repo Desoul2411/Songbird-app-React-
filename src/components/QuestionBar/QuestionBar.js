@@ -1,6 +1,8 @@
 import React from 'react';
 import './QuestionBar.scss';
 import BirdTempImg from '../../img/bird-remplate.jpg';
+import AudioPlayer from 'react-h5-audio-player';
+import '../QuestionBar/audioPlayer.scss';
 
 
 const QuestionBar = ({randomBird,chosenBirdName,chosenBirdImage}) => {
@@ -12,7 +14,12 @@ const QuestionBar = ({randomBird,chosenBirdName,chosenBirdImage}) => {
                     {chosenBirdName ? chosenBirdName : '******'} 
                 </div>
                 <div className="question-bar__player-block">
-                    <audio className="question-bar__player" controls src={randomBird.audio}/>
+                <AudioPlayer
+                    autoPlayAfterSrcChange= {false}
+                    layout={'horizontal'}
+                    showFilledProgress={true}
+                    src={randomBird.audio}
+                />
                 </div>
             </div>
         </div>
