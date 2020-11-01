@@ -5,7 +5,11 @@ import AudioPlayer from 'react-h5-audio-player';
 import '../QuestionBar/audioPlayer.scss';
 
 
-const QuestionBar = ({randomBird,chosenBirdName,chosenBirdImage}) => {
+const QuestionBar = ({randomBird,chosenBirdName,chosenBirdImage,isLevelCompleted}) => {
+    if (isLevelCompleted) {
+        chosenBirdImage = randomBird.image;
+        chosenBirdName = randomBird.name;
+    }
     return(
         <div className="question-bar">
                 <img src={chosenBirdImage ? chosenBirdImage : BirdTempImg} className="question-bar__img" alt="изображение загаданной птицы"/>

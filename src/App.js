@@ -156,6 +156,7 @@ class App extends Component {
                   randomBird = {this.state.randomBird} 
                   chosenBirdName={this.state.birdDataChoosen !== null && this.state.levelCompleted &&  this.state.birdDataChoosen.name} 
                   chosenBirdImage={this.state.birdDataChoosen !== null && this.state.levelCompleted && this.state.birdDataChoosen.image}
+                  isLevelCompleted={this.state.levelCompleted}
                 />
                 <div className="game-content">
                   <BirdsList 
